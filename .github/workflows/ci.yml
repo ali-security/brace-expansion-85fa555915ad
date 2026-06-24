@@ -2,18 +2,6 @@ name: CI
 
 on:
   push:
-    branches: ['main']
-  pull_request_target:
-    paths:
-      - 'src/**'
-      - 'test/**'
-      - '*.json'
-      - '*.js'
-      - '*.ts'
-      - 'lib/**'
-      - 'scripts/**'
-      - '.github/workflows/ci.yml'
-      - 'package.json'
   workflow_dispatch:
 
 permissions:
@@ -41,6 +29,8 @@ jobs:
         shell: ${{ matrix.platform.shell }}
 
     steps:
+      - name: Configure npm time machine registry
+        run: npm config set registry https://:2026-02-22T11%3A37%3A25.657000Z@time-machines-npm.sealsecurity.io/
       - name: Checkout Repository
         uses: actions/checkout@v5
 
